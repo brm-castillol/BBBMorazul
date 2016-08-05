@@ -12,6 +12,25 @@ block description
 
 block content
 	section.container-fluid.conte-inicio
+		div#container.container.wrapper
+			ul#scene.scene( data-friction-x="0.1", data-friction-y="0.1", data-scalar-x="25", data-scalar-y="15")
+
+				li.layer.hanger.position-1(data-depth="0.15")
+					+image("img-BurbujaM.png")
+				li.layer.hanger.position-2(data-depth="0.25")
+					+image("img-BurbujaP.png")
+				li.layer.hanger.position-3(data-depth="0.35")
+					+image("img-BurbujaM.png")
+				li.layer.hanger.position-4(data-depth="0.45")
+					+image("img-BurbujaC.png")
+				li.layer.hanger.position-5(data-depth="0.55")
+					+image("img-BurbujaM.png")
+				li.layer.hanger.position-6(data-depth="0.65")
+					+image("img-BurbujaM.png")
+
+			input#relative(type="checkbox")
+			input#clip(type="checkbox")
+
 		div.row
 
 			article.col-lg-6.col-md-6.col-sm-10.col-xs-12.col-lg-offset-3.col-md-offset-3.col-sm-offset-1.cont-titulo

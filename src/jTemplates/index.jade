@@ -49,7 +49,7 @@ block content
 				+image("texto-inicio.svg", "Demuestra tu Actitud Fresh")(class="img-responsive")
 		div.row
 			div.col-lg-1.col-md-1.col-sm-1.col-xs-1.col-lg-offset-5.col-md-offset-5.col-sm-offset-3.col-xs-offset-5.cont-flecha-A
-				a.cont-flecha(href="#")
+				a.cont-flecha(href="javascript:;",data-go="conte-pasos")
 
 
 
@@ -57,7 +57,8 @@ block content
 	section.conte-pasos
 
 		div.conte-finalM
-
+		div#hielo-1.conte-hielo1
+		div#hielo-2.conte-hielo2
 		div.row
 
 			article.col-lg-6.col-md-6.col-sm-11.col-xs-12.col-lg-offset-3.col-md-offset-3.col-sm-offset-1.cont-titulo.pasos-sabes
@@ -87,7 +88,7 @@ block content
 					SOCIALES E INVITA A TUS AMIGOS <br> A VOTAR POR TI
 		div.row
 			div.col-lg-1.col-md-1.col-sm-1.col-xs-1.col-lg-offset-5.col-md-offset-5.col-sm-offset-3.col-xs-offset-5.cont-flecha-M
-				a.cont-flecha2(href="#")
+				a.cont-flecha2(href="javascript:;",data-go="conte-subir-foto")
 
 	section.conte-subir-foto(style="position:relative;")
 
@@ -138,7 +139,7 @@ block content
 
 			div.col-lg-4.col-md-4.col-sm-6.col-xs-6.col-lg-offset-4.col-sm-offset-4.col-xs-offset-3.conte-botonG
 
-				button.btn-general(class="btn", data-action="bea").
+				button.btn-general#BotonSubir(class="btn", data-action="bea").
 					sube tu foto <i class="icono-btnG"></i>
 
 		div.conte-inicioM
@@ -235,6 +236,7 @@ block content
 								Soy menor de edad y cuento con autorización de mi representante legal
 
 						div
+							input.hide#FotoSubir(type="file")
 							input.btn-general(type="submit" , data-action="bea", value="Demuestra tu #ActitudFresh")
 
 						div.conten-compartir
@@ -259,7 +261,7 @@ block content
 		div.row
 
 			div.col-lg-3.col-md-4.col-xs-6.thumb
-				image.img-responsive(src="/images/img-ejemp.png")(class="img-responsive")
+				image.img-responsive(src="images/img-ejemp.png")(class="img-responsive")
 
 				div.cont-infoFotoM
 					div.conte-nombreU
@@ -274,7 +276,7 @@ block content
 					div.clear
 
 			div.col-lg-3.col-md-4.col-xs-6.thumb
-				image.img-responsive(src="/images/img-ejemp.png")(class="img-responsive")
+				image.img-responsive(src="images/img-ejemp.png")(class="img-responsive")
 
 				div.cont-infoFotoA
 					div.conte-nombreU
@@ -288,7 +290,7 @@ block content
 							400
 					div.clear
 			div.col-lg-3.col-md-4.col-xs-6.thumb
-				image.img-responsive(src="/images/img-ejemp.png")(class="img-responsive")
+				image.img-responsive(src="images/img-ejemp.png")(class="img-responsive")
 
 				div.cont-infoFotoM
 					div.conte-nombreU
@@ -302,7 +304,7 @@ block content
 							40
 					div.clear
 			div.col-lg-3.col-md-4.col-xs-6.thumb
-				image.img-responsive(src="/images/img-ejemp.png")(class="img-responsive")
+				image.img-responsive(src="images/img-ejemp.png")(class="img-responsive")
 
 				div.cont-infoFotoA
 					div.conte-nombreU

@@ -1,5 +1,24 @@
 jQuery(document).ready(function($) {
 	jQuery("#form-datosAP").validate();	
+	jQuery(".cont-flecha2,.cont-flecha").click(function(){
+	    var go=jQuery(this).attr("data-go");
+	    var div = jQuery("."+go).position();
+	    jQuery('html, body').animate({scrollTop : div.top},800);
+	    return false;
+	});
+	jQuery(".conten-foto-sub,#BotonSubir").click(function(){
+	  jQuery("#FotoSubir").trigger('click');
+	  return false;
+	});
+	$( "#hielo-1" ).animate({
+   width: "50%",
+  }, 5000, function() {
+    // Animation complete.
+    $("#hielo-2").animate({
+            width: "50%"
+        },5000);
+  });
+  
 });
 
   // Elements

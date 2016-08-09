@@ -47,6 +47,13 @@
 
 jQuery(document).ready(function($) {
   jQuery("#form-datosAP").validate(); 
+  jQuery(".cont-flecha").click(function(){
+      var go=jQuery(this).attr("data-go");
+      var div = jQuery("."+go).position();
+      jQuery('html, body').animate({scrollTop : div.top},800);
+      hi2.reset().play()
+      return false;
+  });
   jQuery(".cont-flecha2,.cont-flecha").click(function(){
       var go=jQuery(this).attr("data-go");
       var div = jQuery("."+go).position();

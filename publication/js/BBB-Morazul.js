@@ -22,7 +22,7 @@
 
   // Animacion Svg
 
-  var hi = new Vivus('texto-inicial', {type: 'delayed', duration: 100, start: "manual",dashGap: 20, forceRender: true },
+  var hi = new Vivus('texto-inicial', {type: 'delayed', duration: 40, start: "manual",dashGap: 20, forceRender: true },
         function () {
           if (window.console) {
             //console.log('Animation finished. [log triggered from callback]');N
@@ -30,10 +30,11 @@
             jQuery("#texto-inicial .parte-azul>path").attr('class','relleno-fondo');
             //jQuery(".parte-morada>path").attr('class','relleno-fondo');
             //jQuery(".parte-blanca path").addClass('relleno-fondo');
+            jQuery(".contene-logoBBB").show('40');
           }
         });
 
-  var hi2 = new Vivus('texto-pasos', {type: 'delayed', duration: 100, start: "manual",dashGap: 20, forceRender: true },
+  var hi2 = new Vivus('texto-pasos', {type: 'oneByOne', duration: 40, start: "manual",dashGap: 20, forceRender: true },
         function () {
           if (window.console) {
             //console.log('Animation finished. [log triggered from callback]');
@@ -44,6 +45,56 @@
             //jQuery(".parte-blanca path").addClass('relleno-fondo');
           }
         });
+
+  var hi3 = new Vivus('texto-foto', {type: 'async', duration: 40, start: "manual",dashGap: 20, forceRender: true },
+        function () {
+          if (window.console) {
+            //console.log('Animation finished. [log triggered from callback]');
+            //jQuery(".parte-azul>path").addClass('relleno-fondo');
+            jQuery("#texto-foto .parte-blanca>path").attr('class','relleno-fondo');
+            jQuery("#texto-foto .parte-azul>path").attr('class','relleno-fondo');
+            jQuery("#texto-foto .parte-morada>path").attr('class','relleno-fondo');
+            //jQuery(".parte-blanca path").addClass('relleno-fondo');
+          }
+        });
+
+  var hi4 = new Vivus('texto-acudiente', {type: 'async', duration: 40, start: "manual",dashGap: 20, forceRender: true },
+        function () {
+          if (window.console) {
+            //console.log('Animation finished. [log triggered from callback]');
+            //jQuery(".parte-azul>path").addClass('relleno-fondo');
+            jQuery("#texto-acudiente .parte-blanca>path").attr('class','relleno-fondo');
+            jQuery("#texto-acudiente .parte-azul>path").attr('class','relleno-fondo');
+            jQuery("#texto-acudiente .parte-morada>path").attr('class','relleno-fondo');
+            //jQuery(".parte-blanca path").addClass('relleno-fondo');
+          }
+        });
+  var hi5 = new Vivus('texto-partici', {type: 'async', duration: 40, start: "manual",dashGap: 20, forceRender: true },
+        function () {
+          if (window.console) {
+            //console.log('Animation finished. [log triggered from callback]');
+            //jQuery(".parte-azul>path").addClass('relleno-fondo');
+            jQuery("#texto-partici .parte-blanca>path").attr('class','relleno-fondo');
+            jQuery("#texto-partici .parte-azul>path").attr('class','relleno-fondo');
+            jQuery("#texto-partici .parte-morada>path").attr('class','relleno-fondo');
+            //jQuery(".parte-blanca path").addClass('relleno-fondo');
+          }
+        });
+  var hi6 = new Vivus('texto-galeria', {type: 'async', duration: 40, start: "manual",dashGap: 20, forceRender: true },
+        function () {
+          if (window.console) {
+            //console.log('Animation finished. [log triggered from callback]');
+            //jQuery(".parte-azul>path").addClass('relleno-fondo');
+            jQuery("#texto-galeria .parte-blanca>path").attr('class','relleno-fondo');
+            jQuery("#texto-galeria .parte-azul>path").attr('class','relleno-fondo');
+            jQuery("#texto-galeria .parte-morada>path").attr('class','relleno-fondo');
+            jQuery("#texto-galeria .parte-moradac>path").attr('class','relleno-fondo');
+            jQuery("#texto-galeria .parte-negra>path").attr('class','relleno-fondo');
+            //jQuery(".parte-blanca path").addClass('relleno-fondo');
+          }
+        });
+
+ 
 
 jQuery(document).ready(function($) {
   jQuery("#form-datosAP").validate(); 

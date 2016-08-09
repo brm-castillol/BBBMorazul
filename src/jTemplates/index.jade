@@ -56,12 +56,9 @@ block content
 	section.conte-pasos
 
 		div.conte-finalM
-		div#hielo-1.conte-hielo1
-		div#hielo-2.conte-hielo2
 		div.row
 
-			article.col-lg-6.col-md-6.col-sm-11.col-xs-12.col-lg-offset-3.col-md-offset-3.col-sm-offset-1.cont-titulo.pasos-sabes
-				+image("texto-pasos.svg", "Sabes como ganar")(class="img-responsive")
+			include partials/textos/texto_pasos.jade
 
 		div.row
 
@@ -128,7 +125,7 @@ block content
 		div.row
 
 			article.col-lg-4.col-md-4.col-sm-6.col-xs-6.col-lg-offset-4.col-sm-offset-4.col-xs-offset-3.cont-titulo.cont-subirfoto
-				+image("texto-foto.svg", "Subir Foto")(class="img-responsive")
+				include partials/textos/subir_foto.jade
 
 		div.row
 

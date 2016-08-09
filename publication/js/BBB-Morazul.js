@@ -22,17 +22,29 @@
 
   // Animacion Svg
 
-  var hi = new Vivus('datos-acudiente', {type: 'delayed', duration: 100, start: "manual",dashGap: 20, forceRender: true },
+  var hi = new Vivus('texto-inicial', {type: 'delayed', duration: 100, start: "manual",dashGap: 20, forceRender: true },
+        function () {
+          if (window.console) {
+            //console.log('Animation finished. [log triggered from callback]');N
+            jQuery("#texto-inicial .parte-blanca>path").attr('class','relleno-fondo');
+            jQuery("#texto-inicial .parte-azul>path").attr('class','relleno-fondo');
+            //jQuery(".parte-morada>path").attr('class','relleno-fondo');
+            //jQuery(".parte-blanca path").addClass('relleno-fondo');
+          }
+        });
+
+  var hi2 = new Vivus('texto-pasos', {type: 'delayed', duration: 100, start: "manual",dashGap: 20, forceRender: true },
         function () {
           if (window.console) {
             //console.log('Animation finished. [log triggered from callback]');
             //jQuery(".parte-azul>path").addClass('relleno-fondo');
-            jQuery(".parte-blanca>path").attr('class','relleno-fondo');
-            jQuery(".parte-azul>path").attr('class','relleno-fondo');
-            jQuery(".parte-morada>path").attr('class','relleno-fondo');
+            jQuery("#texto-pasos .parte-blanca>path").attr('class','relleno-fondo');
+            jQuery("#texto-pasos .parte-azul>path").attr('class','relleno-fondo');
+            jQuery("#texto-pasos .parte-morada>path").attr('class','relleno-fondo');
             //jQuery(".parte-blanca path").addClass('relleno-fondo');
           }
         });
+
 jQuery(document).ready(function($) {
   jQuery("#form-datosAP").validate(); 
   jQuery(".cont-flecha2,.cont-flecha").click(function(){

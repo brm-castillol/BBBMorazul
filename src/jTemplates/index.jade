@@ -215,8 +215,8 @@ block content
 
 						
 						div.form-group
-								label(for="numero documentoP") Correo El&eacute;ctronico *
-								input(type="text", name="correo electronico", required )
+								label(for="email") Correo El&eacute;ctronico *
+								input(type="email", name="email", required )
 
 						div.form-group
 								label(for="numero documento") N&uacute;mero Tel&eacute;fonico *
@@ -224,14 +224,14 @@ block content
 
 
 						div
-							input.check-terminos( type="checkbox", name="contacto", value="contacto")
-							label.text_terminos.terminos-cont(for="contacto",name="terminos", required)
+							input.check-terminos( type="checkbox", name="contacto", value="contacto".required)
+							label.text_terminos.terminos-cont(for="contacto",name="terminos")
 								a.texto-terminosC.
 											Acepto T&eacute;rminos y Condiciones
 
 						div
-							input.check-terminos( type="checkbox", name="contacto", value="contacto")
-							label.text_terminos(for="contacto", name="acudiente", required).
+							input.check-terminos( type="checkbox", name="contacto", value="contacto",required)
+							label.text_terminos(for="contacto", name="acudiente").
 								Soy menor de edad y cuento con autorización de mi representante legal
 
 						div

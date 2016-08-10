@@ -34,7 +34,7 @@
           }
         });
 
-  var hi2 = new Vivus('texto-pasos', {type: 'oneByOne', duration: 40, start: "manual",dashGap: 20, forceRender: true },
+  var hi2 = new Vivus('texto-pasos', {type: 'delayed', duration: 60, start: "manual",dashGap: 20, forceRender: true },
         function () {
           if (window.console) {
             //console.log('Animation finished. [log triggered from callback]');

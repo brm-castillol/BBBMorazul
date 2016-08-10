@@ -22,7 +22,7 @@
 
   // Animacion Svg
 
-  var hi = new Vivus('texto-inicial', {type: 'delayed', duration: 40, start: "manual",dashGap: 20, forceRender: true },
+  var hi = new Vivus('texto-inicial', {type: 'delayed', duration: 30, start: "manual",dashGap: 20, forceRender: true },
         function () {
           if (window.console) {
             //console.log('Animation finished. [log triggered from callback]');N
@@ -34,7 +34,7 @@
           }
         });
 
-  var hi2 = new Vivus('texto-pasos', {type: 'delayed', duration: 60, start: "manual",dashGap: 20, forceRender: true },
+  var hi2 = new Vivus('texto-pasos', {type: 'delayed', duration: 30, start: "manual",dashGap: 20, forceRender: true },
         function () {
           if (window.console) {
             jQuery("#texto-pasos .parte-blanca>path").attr('class','relleno-fondo');
@@ -43,7 +43,7 @@
           }
         });
 
-  var hi3 = new Vivus('texto-foto', {type: 'async', duration: 40, start: "manual",dashGap: 20, forceRender: true },
+  var hi3 = new Vivus('texto-foto', {type: 'async', duration: 30, start: "manual",dashGap: 20, forceRender: true },
         function () {
           if (window.console) {
             jQuery("#texto-foto .parte-blanca>path").attr('class','relleno-fondo');
@@ -52,7 +52,7 @@
           }
         });
 
-  var hi4 = new Vivus('texto-acudiente', {type: 'async', duration: 40, start: "manual",dashGap: 20, forceRender: true },
+  var hi4 = new Vivus('texto-acudiente', {type: 'async', duration: 30, start: "manual",dashGap: 20, forceRender: true },
         function () {
           if (window.console) {
             jQuery("#texto-acudiente .parte-blanca>path").attr('class','relleno-fondo');
@@ -61,7 +61,7 @@
             hi5.play();
           }
         });
-  var hi5 = new Vivus('texto-partici', {type: 'async', duration: 40, start: "manual",dashGap: 20, forceRender: true },
+  var hi5 = new Vivus('texto-partici', {type: 'async', duration: 30, start: "manual",dashGap: 20, forceRender: true },
         function () {
           if (window.console) {
             jQuery("#texto-partici .parte-blanca>path").attr('class','relleno-fondo');
@@ -69,7 +69,7 @@
             jQuery("#texto-partici .parte-morada>path").attr('class','relleno-fondo');
           }
         });
-  var hi6 = new Vivus('texto-galeria', {type: 'async', duration: 40, start: "manual",dashGap: 20, forceRender: true },
+  var hi6 = new Vivus('texto-galeria', {type: 'async', duration: 30, start: "manual",dashGap: 20, forceRender: true },
         function () {
           if (window.console) {
             jQuery("#texto-galeria .parte-blanca>path").attr('class','relleno-fondo');
@@ -133,3 +133,9 @@ jQuery(document).ready(function($) {
   });
   hi.reset().play()
 });
+
+jQuery(document).ready(function($) {
+  jQuery(".foto-votacion").click(function(event) {
+    jQuery(".conte-btn-votar").show('slow');
+  })
+})

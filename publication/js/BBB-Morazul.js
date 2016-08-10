@@ -103,7 +103,7 @@ jQuery(document).ready(function($) {
     return false;
   });
   jQuery( window ).scroll(function() {
-    var posBody = jQuery('body').scrollTop();
+    var posBody = jQuery(window).scrollTop();
     var limit1 = jQuery('.contene-logoBBB').position().top;
     var limit2 = jQuery('.conte-subir-foto').position().top-(150);
     var limit3 = jQuery('.conte-datos-partici').position().top-(250);

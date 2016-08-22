@@ -23,14 +23,6 @@ if(isset($_POST['frase'])){
     $idAcudiente=$General->setInstancia("BbbmaAcudiente");
     //SUBIR imagen
     $General2=new General();
-    $dir_subida = '/home/ubuntu/workspace/BBBMorazul/publication/uploads/';
-    $fichero_subido = $dir_subida . basename($_FILES['fichero_usuario']['foto_actitud']);
-    
-    if (move_uploaded_file($_FILES['fichero_usuario']['tmp_name'], $fichero_subido)) {
-        $General2->imagen=$fichero_subido;
-    } else {
-        $General2->imagen="Error";
-    }
     //Datos Acudiente
     $General2->idAcudiente=$idAcudiente;
     $General2->nombreCompleto=$_POST['nombreP'];

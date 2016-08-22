@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 				stripBanners: true
 			},
 			dist: {
-				src: ['publication/js/libs/jquery.js', 'publication/js/libs/bootstrap.min.js', 'publication/js/libs/jquery.validate.js', 'publication/js/libs/parallax.min.js', 'publication/js/libs/vivus.js','publication/js/libs/<%= pkg.name %>.js'],
+				src: ['publication/js/libs/jquery.js', 'publication/js/libs/bootstrap.min.js', 'publication/js/libs/jquery.validate.js', 'publication/js/libs/parallax.min.js', 'publication/js/libs/vivus.js', 'publication/js/libs/croppic.min.js','publication/js/libs/<%= pkg.name %>.js'],
 				dest: 'publication/js/concat.<%= pkg.name %>.js'
 			},
 		},

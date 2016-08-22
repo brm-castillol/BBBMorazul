@@ -38,6 +38,7 @@
   <!--/-Header-->
   <div class="container-fluid">
   </div>
+  <div class="fb-root"></div>
   <div class="cont-BBBMA-1"><img src="images/img-BBBMorazul-2.png" title="BBB-Morazul" alt="BBB-Morazul" class="img-responsive"/>
   </div>
   <section class="container-fluid conte-inicio">
@@ -336,10 +337,13 @@
       </svg>
     </div>
     <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-1 conten-foto-sub"></div>
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-1 conten-foto-sub"><img id="previewing"></div>
+      <div id="message"></div>
     </div>
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-1 conte-botonG">
+        <label for="fraseFoto">Frase foto #ACTITUDFRESH</label>
+        <input type="text" name="frareFoto" id="fraseFoto" required onkeypress="changeToFrase(event)">
         <button id="BotonSubir" data-action="bea" class="btn-general btn">
           sube tu foto <i class="icono-btnG"></i>
           
@@ -350,7 +354,7 @@
   </section>
   <section class="conte-datos-partici">
     <div class="row form-datos-AC">
-      <form id="form-datosAP">
+      <form id="form-datosAP" action="guardarDatos.php" method="post" enctype="multipart/form-data" autocomplete="off">
         <article class="col-lg-4 col-md-4 col-sm-4 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
           <div>
             <svg id="texto-acudiente" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="375.919px" height="296.188px" viewbox="0 0 375.919 296.188" enable-background="new 0 0 375.919 296.188" xml:space="preserve" class="col-xs-12 col-xs-offset-0">
@@ -394,47 +398,47 @@
           </div>
           <div>
             <div class="form-group">
-              <label for="nombre">Nombres y Apellidos *</label>
-              <input type="text" name="nombre" required>
+              <label for="nombreCompleto">Nombres y Apellidos *</label>
+              <input type="text" name="nombreCompleto" required>
             </div>
             <div class="form-group">
-              <label for="tipo de documento">Tipo documento *</label>
-              <select name="tipo documento" required>
+              <label for="tipoDocumento">Tipo documento *</label>
+              <select name="tipoDocumento" required>
+                <option value="" selected>Seleccione</option>
                 <option>Cédula</option>
-                <option>Cédula</option>
-                <option>Cédula</option>
+                <option>Tarjeta Identidad</option>
+                <option>Cédula Extranjeria </option>
               </select>
             </div>
             <div class="form-group">
-              <label for="numero documento">N&uacute;mero de documento *</label>
-              <input type="text" name="numero documento" required>
+              <label for="documento">N&uacute;mero de documento *</label>
+              <input type="text" name="documento" required onkeypress="onlyNumber(event)">
             </div>
             <div class="form-group">
               <label for="departamento">departamento *</label>
-              <select name="departamento" required>
-                <option>Cédula</option>
-                <option>Cédula</option>
-                <option>Cédula</option>
+              <select id="departamento" name="idDepartamento" required , onchange="BuscarCiudad(jQuery(this).val());">
+                <option selected="selected">Seleccione un departamento</option>
+                {#foreach from=$Deptos key=k item=v#}
+                	<option value="{#$v->idDepto#}">{#$v->nombre#}</option>
+                {#/foreach#}
+                
+                
               </select>
             </div>
             <div class="form-group">
-              <label for="Ciudad">Ciudad *</label>
-              <select name="ciudad" required>
-                <option>Cédula</option>
-                <option>Cédula</option>
-                <option>Cédula</option>
-              </select>
+              <label for="ciudad">Ciudad *</label>
+              <select id="idCiudad" name="idCiudad" required disabled></select>
             </div>
             <div class="form-group">
-              <label for="correo electronico">Correo El&eacute;ctronico *</label>
-              <input type="text" name="correo electronico" required>
+              <label for="email">Correo El&eacute;ctronico *</label>
+              <input type="text" name="email" required>
             </div>
             <div class="form-group">
-              <label for="numero documento">N&uacute;mero Tel&eacute;fonico *</label>
-              <input type="text" name="telefono" required>
+              <label for="numTelefono">N&uacute;mero Tel&eacute;fonico *</label>
+              <input type="text" name="numTelefono" required onkeypress="onlyNumber(event)">
             </div>
             <div class="form-group">
-              <label for="numero documento">Direcci&oacute;n residencia *</label>
+              <label for="direccion">Direcci&oacute;n residencia *</label>
               <input type="text" name="direccion" required>
             </div>
           </div>
@@ -483,38 +487,39 @@
               </g>
             </svg>
           </div>
-          <div>
-            <button data-action="bea" class="btn-general btn-facebook btn">
+          <div><a id="fbconect" class="btn btn-facebook">
               <i class="icono-btnF"></i>Conectar con Facebook 
               
-            </button>
+              </a>
             <div class="form-group">
               <label for="nombreP">Nombres y Apellidos *</label>
-              <input type="text" name="nombre" required>
+              <input id="nombreCompleto" type="text" name="nombreP" required>
             </div>
             <div class="form-group">
-              <label for="email">Correo El&eacute;ctronico *</label>
-              <input type="email" name="email" required>
+              <label for="emailP">Correo El&eacute;ctronico *</label>
+              <input id="email" type="email" name="emailP" required>
             </div>
             <div class="form-group">
-              <label for="numero documento">N&uacute;mero Tel&eacute;fonico *</label>
-              <input type="text" name="documentoP" required>
+              <label for="numeroTelefonicoP">N&uacute;mero Tel&eacute;fonico *</label>
+              <input type="text" name="numeroTelefonicoP" required onkeypress="onlyNumber(event)">
             </div>
             <div>
-              <input type="checkbox" name="contacto" class="check-terminos">
-              <label for="contacto" name="terminos" class="text_terminos terminos-cont"><a class="texto-terminosC">
+              <input type="checkbox" name="terminos" value="S" required class="check-terminos">
+              <label for="terminos" name="terminos" class="text_terminos terminos-cont"><a class="texto-terminosC">
                   Acepto T&eacute;rminos y Condiciones
                   </a></label>
             </div>
             <div>
-              <input type="checkbox" name="contacto" value="contacto" required class="check-terminos">
+              <input type="checkbox" name="acudiente" value="S" required class="check-terminos">
               <label for="contacto" name="acudiente" class="text_terminos">
                 Soy menor de edad y cuento con autorización de mi representante legal
                 
               </label>
             </div>
             <div>
-              <input id="FotoSubir" type="file" class="hide">
+              <input id="FotoSubir" type="file" name="foto_actitud" class="hide">
+              <input id="frase" type="text" name="frase" class="hide">
+              <input id="idRs" type="hidden" name="idFacebook" class="hide">
               <input type="submit" data-action="bea" value="Demuestra tu #ActitudFresh" class="btn-general">
             </div>
             <div class="conten-compartir">
@@ -677,7 +682,7 @@
         </div>
       </div>
       <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-        <image src="/images/img-ejemp.png" class="img-responsive foto-votacion"></image>
+        <image src="images/img-ejemp.png" class="img-responsive foto-votacion"></image>
         <div class="cont-infoFotoM">
           <div class="conte-nombreU">
             <p class="nombre-usua-foto">
@@ -692,7 +697,7 @@
         </div>
       </div>
       <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-        <image src="/images/img-ejemp.png" class="img-responsive foto-votacion"></image>
+        <image src="images/img-ejemp.png" class="img-responsive foto-votacion"></image>
         <div class="cont-infoFotoA">
           <div class="conte-nombreU">
             <p class="nombre-usua-foto">
@@ -707,7 +712,7 @@
         </div>
       </div>
       <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-        <image src="/images/img-ejemp.png" class="img-responsive foto-votacion"></image>
+        <image src="images/img-ejemp.png" class="img-responsive foto-votacion"></image>
         <div class="cont-infoFotoM">
           <div class="conte-nombreU">
             <p class="nombre-usua-foto">
@@ -722,7 +727,7 @@
         </div>
       </div>
       <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-        <image src="/images/img-ejemp.png" class="img-responsive foto-votacion"></image>
+        <image src="images/img-ejemp.png" class="img-responsive foto-votacion"></image>
         <div class="cont-infoFotoA">
           <div class="conte-nombreU">
             <p class="nombre-usua-foto">

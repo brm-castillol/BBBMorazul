@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 	//Se inicia la configuración del projecto
 		grunt.initConfig({
 		//Le indica cuales archivos de configuracion se van a leer
-		pkg: grunt.file.readJSON('frontend.jquery.json'),
+		pkg: grunt.file.readJSON('BBBMorazul.jquery.json'),
 		banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
 			'<%= grunt.template.today("yyyy-mm-dd") %>\n' +
 			'<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 				stripBanners: true
 			},
 			dist: {
-				src: ['publication/js/libs/jquery.js', 'publication/js/libs/bootstrap.min.js', 'publication/js/libs/jquery.validate.js'],
+				src: ['publication/js/libs/jquery.js', 'publication/js/libs/bootstrap.min.js', 'publication/js/libs/jquery.validate.js', 'publication/js/libs/parallax.min.js', 'publication/js/libs/vivus.js','publication/js/libs/<%= pkg.name %>.js'],
 				dest: 'publication/js/concat.<%= pkg.name %>.js'
 			},
 		},
@@ -105,7 +105,7 @@ module.exports = function(grunt) {
 					 files: [ {
 						 cwd: "src/jTemplates", //Directorio donde se encuentran los archivos
 						 src: [ '**/*.jade', '!**/partials/*.jade', '!**/modules/*.jade' ],//ignoramos las carpetas con los fragmentos de código
-						 dest: "publication/",
+						 dest: "publication/templates/",
 						 expand: true,//Esto  es para exportar el html comprimido o extendido
 						 ext: ".html" //Extensión de los archivos
 					 } ]

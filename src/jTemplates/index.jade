@@ -11,6 +11,7 @@ block description
 
 
 block content
+	div.fb-root
 	div.cont-BBBMA-1
 		+image("img-BBBMorazul-2.png", "BBB-Morazul")(class="img-responsive")
 
@@ -135,11 +136,15 @@ block content
 		div.row
 
 			div.col-lg-4.col-md-4.col-sm-6.col-xs-10.col-lg-offset-4.col-md-offset-4.col-sm-offset-3.col-xs-offset-1.conten-foto-sub
-			
+				img#previewing
+			div#message
 		div.row
 
 			div.col-lg-4.col-md-4.col-sm-6.col-xs-10.col-lg-offset-4.col-md-offset-4.col-sm-offset-3.col-xs-offset-1.conte-botonG
-
+				label(for="fraseFoto") Frase foto #ACTITUDFRESH
+				
+				input(type="text", name="frareFoto" id="fraseFoto", required ,onkeypress='changeToFrase(event)')
+		
 				button.btn-general#BotonSubir(class="btn", data-action="bea").
 					sube tu foto <i class="icono-btnG"></i>
 
@@ -148,7 +153,7 @@ block content
 	section.conte-datos-partici
 		div.row.form-datos-AC
 
-			form#form-datosAP
+			form#form-datosAP(action="guardarDatos.php",method="post",enctype="multipart/form-data",autocomplete="off")
 
 				article.col-lg-4.col-md-4.col-sm-4.col-xs-10.col-lg-offset-1.col-md-offset-1.col-sm-offset-1.col-xs-offset-1
 
@@ -159,44 +164,45 @@ block content
 					div
 
 						div.form-group
-								label(for="nombre") Nombres y Apellidos *
-								input(type="text", name="nombre", required )
+								label(for="nombreCompleto") Nombres y Apellidos *
+								input(type="text", name="nombreCompleto", required )
 
 						div.form-group
-								label(for="tipo de documento") Tipo documento *
-								select(name="tipo documento", required )
-									option Cédula
-									option Cédula
-									option Cédula
+								label(for="tipoDocumento") Tipo documento *
+								select(name="tipoDocumento", required )
+									option(value="",selected) Seleccione
+									option(value=CC) Cédula
+									option(value=TI) Tarjeta Identidad
+									option(value=CE) Cédula Extranjeria 
 
 						div.form-group
-								label(for="numero documento") N&uacute;mero de documento *
-								input(type="text", name="numero documento", required )
+								label(for="documento") N&uacute;mero de documento *
+								input(type="text", name="documento", required ,onkeypress='onlyNumber(event)')
 
 						div.form-group
 								label(for="departamento") departamento *
-								select(name="departamento", required )
-									option Cédula
-									option Cédula
-									option Cédula
+								select#departamento(name="idDepartamento", required,, onchange='BuscarCiudad(jQuery(this).val());' ).
+									<option selected="selected">Seleccione un departamento</option>
+									{#foreach from=$Deptos key=k item=v#}
+										<option value="{#$v->idDepto#}">{#$v->nombre#}</option>
+									{#/foreach#}
+								
+				
+						div.form-group
+								label(for="ciudad") Ciudad *
+								select#idCiudad(name="idCiudad", required,disabled )
+								
 
 						div.form-group
-								label(for="Ciudad") Ciudad *
-								select(name="ciudad", required )
-									option Cédula
-									option Cédula
-									option Cédula
+								label(for="email") Correo El&eacute;ctronico *
+								input(type="text", name="email", required )
 
 						div.form-group
-								label(for="correo electronico") Correo El&eacute;ctronico *
-								input(type="text", name="correo electronico", required )
+								label(for="numTelefono") N&uacute;mero Tel&eacute;fonico *
+								input(type="text", name="numTelefono", required , onkeypress='onlyNumber(event)')
 
 						div.form-group
-								label(for="numero documento") N&uacute;mero Tel&eacute;fonico *
-								input(type="text", name="telefono", required )
-
-						div.form-group
-								label(for="numero documento") Direcci&oacute;n residencia *
+								label(for="direccion") Direcci&oacute;n residencia *
 								input(type="text", name="direccion", required )
 
 
@@ -208,35 +214,38 @@ block content
 
 					div
 
-						button.btn-general.btn-facebook(class="btn", data-action="bea").
+						a#fbconect.btn.btn-facebook().
 							<i class="icono-btnF"></i>Conectar con Facebook 
+						
 
 						div.form-group
 								label(for="nombreP") Nombres y Apellidos *
-								input(type="text", name="nombre", required )
+								input#nombreCompleto(type="text", name="nombreP", required )
 
 						
 						div.form-group
-								label(for="email") Correo El&eacute;ctronico *
-								input(type="email", name="email", required )
+								label(for="emailP") Correo El&eacute;ctronico *
+								input#email(type="email", name="emailP", required )
 
 						div.form-group
-								label(for="numero documento") N&uacute;mero Tel&eacute;fonico *
-								input(type="text", name="documentoP", required )
+								label(for="numeroTelefonicoP") N&uacute;mero Tel&eacute;fonico *
+								input(type="text", name="numeroTelefonicoP", required, onkeypress='onlyNumber(event)' )
 								
 						div
-							input.check-terminos( type="checkbox", name="contacto", value="contacto".required)
-							label.text_terminos.terminos-cont(for="contacto",name="terminos")
+							input.check-terminos( type="checkbox", name="terminos", value="S",required)
+							label.text_terminos.terminos-cont(for="terminos",name="terminos")
 								a.texto-terminosC.
 											Acepto T&eacute;rminos y Condiciones
 
 						div
-							input.check-terminos( type="checkbox", name="contacto", value="contacto",required)
+							input.check-terminos( type="checkbox", name="acudiente", value="S",required)
 							label.text_terminos(for="contacto", name="acudiente").
 								Soy menor de edad y cuento con autorización de mi representante legal
 
 						div
-							input.hide#FotoSubir(type="file")
+							input.hide#FotoSubir(type="file",name="foto_actitud")
+							input.hide#frase(type="text",name="frase")
+							input.hide#idRs(type="hidden",name="idFacebook")
 							input.btn-general(type="submit" , data-action="bea", value="Demuestra tu #ActitudFresh")
 
 						div.conten-compartir
@@ -276,7 +285,7 @@ block content
 				div.conte-btn-votar
 					a(href="#")
 						+image("btn-Votar.png", "Votar")(class="img-responsive img-vota")
-
+						
 					div.cont-icono-votar
 						div.cont-iconoV-Fb
 							+image("img-voteFb.png", "Votar Facebook")(class="img-responsive")
@@ -330,7 +339,7 @@ block content
 			
 
 			div.col-lg-3.col-md-4.col-xs-6.thumb
-				image.img-responsive.foto-votacion(src="/images/img-ejemp.png")
+				image.img-responsive.foto-votacion(src="images/img-ejemp.png")
 
 				div.cont-infoFotoM
 					div.conte-nombreU
@@ -345,7 +354,7 @@ block content
 					div.clear
 
 			div.col-lg-3.col-md-4.col-xs-6.thumb
-				image.img-responsive.foto-votacion(src="/images/img-ejemp.png")
+				image.img-responsive.foto-votacion(src="images/img-ejemp.png")
 
 				div.cont-infoFotoA
 					div.conte-nombreU
@@ -359,7 +368,7 @@ block content
 							400
 					div.clear
 			div.col-lg-3.col-md-4.col-xs-6.thumb
-				image.img-responsive.foto-votacion(src="/images/img-ejemp.png")
+				image.img-responsive.foto-votacion(src="images/img-ejemp.png")
 
 				div.cont-infoFotoM
 					div.conte-nombreU
@@ -373,7 +382,7 @@ block content
 							40
 					div.clear
 			div.col-lg-3.col-md-4.col-xs-6.thumb
-				image.img-responsive.foto-votacion(src="/images/img-ejemp.png")
+				image.img-responsive.foto-votacion(src="images/img-ejemp.png")
 
 				div.cont-infoFotoA
 					div.conte-nombreU
@@ -386,6 +395,6 @@ block content
 						p.text-numero-votos.
 							400
 					div.clear
-
+					
 block Scripts
 	//-Acá se ponen js que solo vayan en ésta página

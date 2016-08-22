@@ -2,7 +2,7 @@
 /*
 *	!!! THIS IS JUST AN EXAMPLE !!!, PLEASE USE ImageMagick or some other quality image processing libraries
 */
-$imgUrl = $_POST['imgUrl'];
+$imgUrl = '../../'.$_POST['imgUrl'];
 // original sizes
 $imgInitW = $_POST['imgInitW'];
 $imgInitH = $_POST['imgInitH'];
@@ -82,7 +82,7 @@ if(!is_writable(dirname($output_filename))){
 	imagejpeg($final_image, $output_filename.$type, $jpeg_quality);
 	$response = Array(
 	    "status" => 'success',
-	    "url" => $output_filename.$type
+	    "url" => "libs/crop/".$output_filename.$type
     );
 }
 print json_encode($response);

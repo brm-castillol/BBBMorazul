@@ -79,12 +79,27 @@
             jQuery("#texto-galeria .parte-negra>path").attr('class','relleno-fondo');
           }
         });
-
+///Subida y crop de Imagenes
+var croppOptions = {
+				uploadUrl:'libs/crop/save_to_file.php',
+				cropUrl:'libs/crop/crop_to_file.php',
+				loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
+				imgEyecandy:false,
+				outputUrlId:'FotoSubir',
+				onAfterImgUpload: function(){
+				  jQuery("#BotonSubir").html("Finalizar Subida <i class='icono-btnG'></i>").attr("onclick","finalizaSubida();")
+				},
+				onAfterImgCrop:function(){
+				  jQuery("#BotonSubir").html("Cambia tu foto <i class='icono-btnG'></i>").attr("onclick","iniciaSubida();")
+				  jQuery("#fraseFoto").focus();
+				},
+		}
+//Instancia del crop		
+var cropContainerEyecandy = new Croppic('contenedorFoto', croppOptions);
  
 
 jQuery(document).ready(function($) {
- // jQuery("#form-datosAP").validate(); 
-  
+  //Funcion primara flecha
   jQuery(".cont-flecha").click(function(){
       var go=jQuery(this).attr("data-go");
       var div = jQuery("."+go).position();
@@ -92,16 +107,61 @@ jQuery(document).ready(function($) {
       //hi2.reset().play()
       return false;
   });
+  //Funcion segunda flecha
   jQuery(".cont-flecha2,.cont-flecha").click(function(){
       var go=jQuery(this).attr("data-go");
       var div = jQuery("."+go).position();
       jQuery('html, body').animate({scrollTop : div.top},800);
       return false;
   });
-  jQuery(".conten-foto-sub,#BotonSubir").click(function(){
-    jQuery("#FotoSubir").trigger('click');
-    return false;
-  });
+  /// Voton de votacion
+  jQuery(".foto-votacion").click(function(event) {
+    jQuery(".conte-btn-votar").show('slow');
+  })
+  ///Validación formulario
+  jQuery("#form-datosAP").validate({
+            rules: {
+                nombreCompleto: {required: true},
+                tipoDocumento: {required: true},
+                documento: {required: true},
+                departamento: {required: true},
+                ciudad: {required: true},
+                email: {
+                    required: true,
+                    email: true
+                },
+                numTelefono: {required: true},
+                direccion: {required: true},
+                nombreP: {required: true},
+                terminos: {required: true},
+                acudiente: {required: true},
+            }
+        });
+        
+        /*Ejecuta el registro si el formulario es valido*/
+        jQuery('#form-datosAP').submit(function(event) {
+           if(jQuery('#form-datosAP').valid()) {
+                    jQuery("#frase").val(jQuery("#fraseFoto").val())
+                    return true;
+                }else{
+                  return false;
+                }
+            /* Act on the event */
+           /* console.log(jQuery("#fraseFoto").val());
+            if(jQuery("#fraseFoto").val()=="" || jQuery("#FotoSubir").val()){
+            var position = jQuery(".conte-subir-foto").position();
+              jQuery("html, body").animate({ scrollTop: position.top+200 });
+              if(jQuery("#FotoSubir").val()==""){
+                jQuery("#msnError").html("Debes ingresar tu frase");
+              }else if(jQuery("#fraseFoto").val()==""){
+                jQuery("#msnError").html("Debes ingresar tu imagen");
+                
+              }
+            }else{
+            
+            }*/
+        });
+  //Scroll para las animaciones
   jQuery( window ).scroll(function() {
     var posBody = jQuery(window).scrollTop();
     var limit1 = jQuery('.contene-logoBBB').position().top;
@@ -133,61 +193,19 @@ jQuery(document).ready(function($) {
   hi.reset().play()
 });
 
-jQuery(document).ready(function($) {
-  jQuery(".foto-votacion").click(function(event) {
-    jQuery(".conte-btn-votar").show('slow');
-  })
-    $("#FotoSubir").change(function() {
-        $("#message").empty(); // To remove the previous error message
-        var file = this.files[0];
-        var imagefile = file.type;
-        var match = ["image/jpeg", "image/png", "image/jpg"];
-        if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2]))) {
-            $('#previewing').attr('src', 'noimage.png');
-            $("#message").html("<p id='error'>Please Select A valid Image File</p>" + "<h4>Note</h4>" + "<span id='error_message'>Only jpeg, jpg and png Images type allowed</span>");
-            return false;
-        } else {
-            var reader = new FileReader();
-            reader.onload = imageIsLoaded;
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
-    $("#form-datosAP").validate({
-            rules: {
-                nombreCompleto: {required: true},
-                tipoDocumento: {required: true},
-                documento: {required: true},
-                departamento: {required: true},
-                ciudad: {required: true},
-                email: {
-                    required: true,
-                    email: true
-                },
-                numTelefono: {required: true},
-                direccion: {required: true},
-                nombreP: {required: true},
-                terminos: {required: true},
-                acudiente: {required: true},
-            }
-        });
-        
-        /*Ejecuta el registro si el formulario es valido*/
-        jQuery('.btn-submit').click(function(event) {
-            /* Act on the event */
-             if(jQuery('#form-datosAP').valid()) {
-                    return true
-                }else{
-                  return false;
-                }
-        });
-})
+//Funciones
+function iniciaSubida(){
+  jQuery(".cropControlUpload").trigger('click');
+    return false;
+}
+function finalizaSubida(){
+  jQuery(".cropControlCrop").trigger('click');
+  return false;
+}
 
-
-function imageIsLoaded(e) {
-    $('#previewing').attr('src', e.target.result);
-    $('#previewing').attr('width', '100%');
-    $('#previewing').attr('height', '100%');
-};
+function changeToFrase(){
+  jQuery("#frase").val(jQuery("#fraseFoto").val())
+}
 
 function onlyNumber(evt) {
   var theEvent = evt || window.event;
@@ -199,10 +217,8 @@ function onlyNumber(evt) {
     if(theEvent.preventDefault) theEvent.preventDefault();
   }
 }
-function changeToFrase(){
-  jQuery("#frase").val(jQuery("#fraseFoto").val())
-}
 
+///Funciones facebook
 
 var app_id = '927635007348573';
 var scopes = 'public_profile,email';
@@ -310,8 +326,18 @@ window.fbAsyncInit = function() {
               // user is now logged out
             });
         }
+///Compartir
+function compartirFacebook(){
+  FB.ui({
+                    method: 'feed',
+                    name: "Demuestra tu #ACTITUDFRESH",
+                    link: "http://www.bonbonbum.com/",
+                    picture: 'https://detodo-sebas1022.c9users.io/BBBMorazul/publication/images/img-BBBMorazul-2.png',
+                    description: 'Esta es mi #ACTITUDFRESH'
+                });
+}
 
-
+///Ajax Ciudades
 
 function BuscarCiudad(idDepto){
    jQuery.ajax({
@@ -337,7 +363,9 @@ function BuscarCiudad(idDepto){
 }
 
 
+//// Ajax Buscardor
 
+/// Ajax Votacion
 
 
 

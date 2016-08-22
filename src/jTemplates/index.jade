@@ -135,18 +135,19 @@ block content
 
 		div.row
 
-			div.col-lg-4.col-md-4.col-sm-6.col-xs-10.col-lg-offset-4.col-md-offset-4.col-sm-offset-3.col-xs-offset-1.conten-foto-sub
-				img#previewing
-			div#message
+			div#contenedorFoto.col-lg-4.col-md-4.col-sm-6.col-xs-10.col-lg-offset-4.col-md-offset-4.col-sm-offset-3.col-xs-offset-1.conten-foto-sub
+				
+
 		div.row
 
 			div.col-lg-4.col-md-4.col-sm-6.col-xs-10.col-lg-offset-4.col-md-offset-4.col-sm-offset-3.col-xs-offset-1.conte-botonG
-				label(for="fraseFoto") Frase foto #ACTITUDFRESH
-				
-				input(type="text", name="frareFoto" id="fraseFoto", required ,onkeypress='changeToFrase(event)')
-		
-				button.btn-general#BotonSubir(class="btn", data-action="bea").
+				button.btn-general#BotonSubir(class="btn",onclick="iniciaSubida()").
 					sube tu foto <i class="icono-btnG"></i>
+					
+				label(for="fraseFoto") Frase foto #ACTITUDFRESH
+				input(type="text", name="frareFoto" id="fraseFoto", required ,onkeypress='changeToFrase(event)')
+				div#msnError
+				
 
 		div.conte-inicioM
 
@@ -181,7 +182,7 @@ block content
 
 						div.form-group
 								label(for="departamento") departamento *
-								select#departamento(name="idDepartamento", required,, onchange='BuscarCiudad(jQuery(this).val());' ).
+								select#idDepartamento(name="idDepartamento", required,, onchange='BuscarCiudad(jQuery(this).val());' ).
 									<option selected="selected">Seleccione un departamento</option>
 									{#foreach from=$Deptos key=k item=v#}
 										<option value="{#$v->idDepto#}">{#$v->nombre#}</option>
@@ -243,22 +244,23 @@ block content
 								Soy menor de edad y cuento con autorización de mi representante legal
 
 						div
-							input.hide#FotoSubir(type="file",name="foto_actitud")
+							input.hide#FotoSubir(type="hidden",name="imagen")
 							input.hide#frase(type="text",name="frase")
 							input.hide#idRs(type="hidden",name="idFacebook")
+							
 							input.btn-general(type="submit" , data-action="bea", value="Demuestra tu #ActitudFresh")
 
 						div.conten-compartir
 							p.texto-share.
 								compartir
 
-							a(href="#")
+							a(href="javascript:;",onclick="compartirFacebook();")
 								+image("img-icoFace.png", "Compartir Facebook")
 
-							a(href="#")
+							a(href="javascript:;",onclick="compartirFacebook();")
 								+image("img-icoTw.png", "Compartir Facebook")
 
-	section.conte-galeria
+	section.conte-galeria.hide
 
 		div.conte-finalM
 		div.row.con-titulo-Galeria

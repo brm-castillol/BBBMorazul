@@ -7,7 +7,7 @@ error_reporting(0);
 
 require("db/requires.php");
 if(isset($_POST['frase'])){
-   // printVar($_POST);
+   printVar($_POST);
     $General=new General();
     //Datos Acudiente
     $CamposTablas=$General->getCampos("BbbmaAcudiente");
@@ -32,10 +32,9 @@ if(isset($_POST['frase'])){
     $General2->frase=$_POST['frase'];
     $General2->menorEdad=$_POST['acudiente'];
     $General2->idFacebook=$_POST['idFacebook'];
-    printVar($datos);
-    DB_DataObject::debugLevel(1);
-    $idAcudiente=$General->setInstancia("BbbmaParticipante");
-    die();
+    $General2->imagen=$_POST['imagen'];
+    $idAcudiente=$General2->setInstancia("BbbmaParticipante");
+    header("Location:gracias.html");
 }
 
 ?>

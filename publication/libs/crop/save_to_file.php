@@ -2,7 +2,7 @@
 /*
 *	!!! THIS IS JUST AN EXAMPLE !!!, PLEASE USE ImageMagick or some other quality image processing libraries
 */
-    $imagePath = "temp/";
+    $imagePath = "../../uploads/";
 
 	$allowedExts = array("gif", "jpeg", "jpg", "png", "GIF", "JPEG", "JPG", "PNG");
 	$temp = explode(".", $_FILES["img"]["name"]);
@@ -32,13 +32,17 @@
 		{
 			
 	      $filename = $_FILES["img"]["tmp_name"];
+	      
+	      $info = getimagesize($filename);
+		$extension = image_type_to_extension($info[2]);
+		$nombreImagen=date("ymdhis")."_".rand(0,100).$extension;
 		  list($width, $height) = getimagesize( $filename );
 
-		  move_uploaded_file($filename,  $imagePath . $_FILES["img"]["name"]);
+		  move_uploaded_file($filename,  $imagePath . $nombreImagen);
 
 		  $response = array(
 			"status" => 'success',
-			"url" => $imagePath.$_FILES["img"]["name"],
+			"url" => "uploads/".$nombreImagen,
 			"width" => $width,
 			"height" => $height
 		  );

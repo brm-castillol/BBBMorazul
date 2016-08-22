@@ -1,3 +1,5 @@
+<?php /* Smarty version 2.6.6, created on 2016-08-22 05:28:42
+         compiled from index.html */ ?>
 <!DOCTYPE html><!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="es-CO"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="es-CO"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="es-CO"> <![endif]-->
@@ -418,9 +420,13 @@
               <label for="departamento">departamento *</label>
               <select id="departamento" name="idDepartamento" required , onchange="BuscarCiudad(jQuery(this).val());">
                 <option selected="selected">Seleccione un departamento</option>
-                {#foreach from=$Deptos key=k item=v#}
-                	<option value="{#$v->idDepto#}">{#$v->nombre#}</option>
-                {#/foreach#}
+                <?php if (count($_from = (array)$this->_tpl_vars['Deptos'])):
+    foreach ($_from as $this->_tpl_vars['k'] => $this->_tpl_vars['v']):
+?>
+                	<option value="<?php echo $this->_tpl_vars['v']->idDepto; ?>
+"><?php echo $this->_tpl_vars['v']->nombre; ?>
+</option>
+                <?php endforeach; unset($_from); endif; ?>
                 
                 
               </select>

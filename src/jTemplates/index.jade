@@ -50,7 +50,7 @@ block content
 		div.row
 
 			include partials/textos/texto_inicio.jade
-			div.col-lg-4.col-md-4.col-sm-4.col-xs-8.col-lg-offset-4.col-md-offset-4.col-sm-offset-4.col-xs-offset-3.contene-logoBBB
+			div.col-lg-4.col-md-4.col-sm-4.col-xs-8.col-lg-offset-0.col-md-offset-4.col-sm-offset-4.col-xs-offset-3.contene-logoBBB
 				+image("img-logoBBB.png", "logoBBB")(class="img-responsive")
 
 		div.row
@@ -266,6 +266,14 @@ block content
 			article				
 
 				include partials/textos/texto_galeria.jade
+			
+			div.cont-buscador
+
+				label Buscar por nombre
+				input.buscador-galeria(type="text", name="documentoP", required )
+				a.btn-buscar(href="#")
+					<i class="icono-buscar"></i>
+					
 
 		div.row
 
